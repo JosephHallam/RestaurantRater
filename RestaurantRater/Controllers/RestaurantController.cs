@@ -87,5 +87,19 @@ namespace RestaurantRater.Controllers
             }
             return View(item);
         }
+        // GET : Restaurant/Details/{id}
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var item = _ctx.Restaurants.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            return View(item);
+        }
     }
 }
